@@ -1,3 +1,10 @@
+'''
+This is rockman game
+developed by T.S Chandrakasem University
+dept. Computer Science and A.I.
+use in OOP class 1/2024
+'''
+
 import pygame
 
 
