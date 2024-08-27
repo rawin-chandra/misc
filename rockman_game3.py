@@ -1,17 +1,18 @@
 '''
 This code is written by T.S Chandrakasem 
 '''
-
 import pygame
 import random
 
 has_bullet = False 
+bullet_list = []
 
 class Enemy:
     def __init__(self,xx,yy,dd):
         self.x = xx 
         self.y = yy 
         self.dir = dd  
+        self.is_bomb = False
     
     def move(self,d):
         self.dir = d
@@ -99,6 +100,7 @@ right_r = pygame.Rect(549,34,69,71)
 left_jump = pygame.Rect(365,126,88,91)
 right_jump = pygame.Rect(571,126,88,91)
 fish_rect = [pygame.Rect(110,279,120,85),pygame.Rect(230,279,120,85),pygame.Rect(350,279,120,85),pygame.Rect(470,279,120,85),pygame.Rect(590,279,120,85)]
+bomb_rect = pygame.Rect(536,349,90,90)
 
 done = False
 clock = pygame.time.Clock()   #ตัวกำหนด frame rate
@@ -122,6 +124,7 @@ while not done:   #game loop  (ให้ใช้เวลาน้อยสุ�
                 rock_obj.is_jump = True
             elif event.key == pygame.K_s:
                 b = Bullet(rock_obj.x + 20,rock_obj.y + 20,rock_obj.dir)
+                bullet_list.append(b)
                 has_bullet = True 
             else:
                 rock_obj.is_move = False
@@ -162,12 +165,18 @@ while not done:   #game loop  (ให้ใช้เวลาน้อยสุ�
         fish_obj.move(0)
     elif x == 3:
         fish_obj.move(1)
-
-    screen.blit(enemy,(fish_obj.x,fish_obj.y),r)
+        
+    screen.blit(enemy,(fish_obj.x,fish_obj.y),r)    
 
     if has_bullet:
-        b.move()
-        pygame.draw.circle(screen, (255,0,0), (b.x,b.y), 5)
+        for bull in bullet_list:
+           bull.move()
+           if bull.x > fish_obj.x and bull.x < fish_obj.x + 120:
+               bull.is_bomb = True
+               screen.blit(rockman,(fish_obj.x,fish_obj.y),bomb_rect)
+           else:
+               bull.is_bomb = False
+           pygame.draw.circle(screen, (255,0,0), (bull.x,bull.y), 5)
            
 
     pygame.display.flip()    #วาดลงการ์ดจอ (ก่อนหน้านี้ วาดใน RAM)
