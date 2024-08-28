@@ -84,8 +84,8 @@ enemy = pygame.image.load('enemy_sprite.gif')
 
 #effect = pygame.mixer.Sound('mario_sound.wav')
 
-pygame.mixer.music.load('rockman.mp3')
-pygame.mixer.music.play(-1)
+#pygame.mixer.music.load('rockman.mp3')   #you can find your mp3 here
+#pygame.mixer.music.play(-1)
 
 rockman.set_colorkey((0,0,0))
 
