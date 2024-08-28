@@ -12,3 +12,6 @@ and download all stuffs in one directory and call python3 rocckman_game3.py
 credit:
 sprites file
    https://www.sprites-inc.co.uk/sprite.php?local=/Classic/
+
+for my on-line course of pygame
+    www.udemy.com/code-game
